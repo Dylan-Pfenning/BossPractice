@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private GameObject Player = null;
     [SerializeField]
-    private Vector3 offset;
+    private Vector3 offset = Vector3.zero;
 
     void LateUpdate()
     {

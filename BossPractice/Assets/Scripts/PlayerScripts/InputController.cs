@@ -8,25 +8,27 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private float _Acceleration = 2f;
     [SerializeField]
-    private float _AirAccel = 0.5f;
-    [SerializeField]
     private float _MaxSpeed = 10f;
     [SerializeField]
-    private int _MaxJumps = 2;
-
-    //Groud Checks
+    private int _MaxJumps = 1;
+    //Groud Checking
     [Header("Ground Checking")]
     [SerializeField]
     private float _GroundDistance = 0.2f;
     [SerializeField]
-    private LayerMask _Ground;
-
-
-
-    private int JumpsLeft;
+    private LayerMask _Ground= 0;
+    private int JumpsLeft = 0;
     private Transform GroundChecker;
     private bool isGrounded = true;
+    //Extra class properties
     private Rigidbody rb;
+
+    //Getters and setters
+    public int GetMaxJumps() {return _MaxJumps;}
+    public void SetMaxJumps(int val) { _MaxJumps = val;}
+
+    public float GetAccel() {return _Acceleration;}
+    public void SetAccel(float val) {_Acceleration = val;} 
 
     // Start is called before the first frame update
     private void Start()
@@ -40,12 +42,6 @@ public class InputController : MonoBehaviour
     {
         //Checking if player is grounded
         isGrounded = Physics.CheckSphere(GroundChecker.position, _GroundDistance, _Ground, QueryTriggerInteraction.Ignore);
-
-        if (rb.velocity.y <= 1 && !isGrounded)
-        {
-            //Set custom gravity for falling
-            //rb.AddForce(new Vector2(0.0f, -25f), ForceMode.Acceleration);
-        }
         //Resetting Jump count
         if (isGrounded && JumpsLeft < _MaxJumps)
         {
@@ -55,7 +51,7 @@ public class InputController : MonoBehaviour
             tempVel.y = 0;
             rb.velocity = tempVel;
         }
-        Debug.Log(JumpsLeft);
+        //Debug.Log(JumpsLeft);
 
     }
 
@@ -67,7 +63,7 @@ public class InputController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(transform.right * 25f, ForceMode.Impulse);
+            rb.AddForce(transform.right * 10f, ForceMode.Impulse);
         }
         JumpsLeft--;
     }
@@ -76,8 +72,6 @@ public class InputController : MonoBehaviour
     //Physics update ticking
     private void FixedUpdate()
     {
-        Debug.Log(transform.forward);
-
         //Jumping
         if (Input.GetButtonDown("Jump") && JumpsLeft != 0)
         {
@@ -90,11 +84,7 @@ public class InputController : MonoBehaviour
             {
                 rb.velocity += Vector3.right * _Acceleration;
             }
-            else
-            {
-                //rb.velocity += Vector3.right * _AirAccel;
-            }
-             transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
 
         }
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -102,10 +92,6 @@ public class InputController : MonoBehaviour
             if (isGrounded)
             {
                 rb.velocity += Vector3.left * _Acceleration;
-            }
-            else
-            {
-                //rb.velocity += Vector3.left * _AirAccel;
             }
             transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
         }
@@ -125,6 +111,5 @@ public class InputController : MonoBehaviour
                 rb.velocity = tempVel;
             }
         }
-        Debug.Log(rb.velocity);
     }
 }
