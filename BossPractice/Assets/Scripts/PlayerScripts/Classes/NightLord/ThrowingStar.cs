@@ -29,5 +29,8 @@ public class ThrowingStar : MonoBehaviour
             //Check owners stats for damage formula same with enemy
             
         }
+        Debug.Log(other.gameObject);
+        
+        Destroy(gameObject, 0);
     }
 }

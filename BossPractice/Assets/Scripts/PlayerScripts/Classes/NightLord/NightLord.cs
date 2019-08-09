@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NightLord : Player
@@ -11,6 +10,7 @@ public class NightLord : Player
 
     private Vector3 SpawnLoc;
     private Quaternion SpawnRot;
+    private Vector3 ForwardVec;
 
     // Start is called before the first frame update
     private void Start()
@@ -42,6 +42,7 @@ public class NightLord : Player
             //Quad throw throws 5 stars because of hyper skill over a period
             SpawnLoc = transform.position;
             SpawnRot = transform.rotation;
+            ForwardVec = transform.right;
             StartCoroutine("QuadThrow");
         }
     }
@@ -58,9 +59,7 @@ public class NightLord : Player
         Rigidbody starRB = starThrown.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(starThrown.GetComponent<SphereCollider>(), GetComponent<CapsuleCollider>());
         starThrown.GetComponent<ThrowingStar>().Owner = this;
-        Debug.Log("Owner Set");
-        
-        starRB.velocity = transform.right * _StarSpeed;
+        starRB.velocity = ForwardVec * _StarSpeed;
     }
     private IEnumerator QuadThrow()
     {
