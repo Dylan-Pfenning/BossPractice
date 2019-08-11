@@ -20,8 +20,10 @@ MonoBehaviour:
   _Att: 0
   _StarForce: 0
   _ArcaneForce: 0
+  _Health: 0
+  _Experiance: 0
   _PerAtt: 0
-  _Star: {fileID: 2610738116340983202, guid: d33beb5d1c9d94a6b8c65335088d4ade, type: 3}
+  _Star: {fileID: 2674790695123639568, guid: d33beb5d1c9d94a6b8c65335088d4ade, type: 3}
   _StarSpeed: 10
 --- !u!1001 &6859476725803128356
 PrefabInstance:
@@ -33,7 +35,12 @@ PrefabInstance:
     - target: {fileID: 3930078338940182413, guid: ccc7791967dc548ac8e46bdbfd9d666d,
         type: 3}
       propertyPath: m_Name
-      value: NightLord
+      value: NightLord Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930078338940182412, guid: ccc7791967dc548ac8e46bdbfd9d666d,
+        type: 3}
+      propertyPath: _JumpHeight
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3930078338940180592, guid: ccc7791967dc548ac8e46bdbfd9d666d,
         type: 3}
@@ -89,11 +96,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3930078338940182412, guid: ccc7791967dc548ac8e46bdbfd9d666d,
-        type: 3}
-      propertyPath: _JumpHeight
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccc7791967dc548ac8e46bdbfd9d666d, type: 3}

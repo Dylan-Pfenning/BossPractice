@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3930078338940182412}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -155,9 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _JumpHeight: 15
   _Acceleration: 2
-  _AirAccel: 0.5
   _MaxSpeed: 10
   _MaxJumps: 2
+  _JumpCD: 0
   _GroundDistance: 0.2
   _Ground:
     serializedVersion: 2

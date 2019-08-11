@@ -11,6 +11,9 @@ public class InputController : MonoBehaviour
     private float _MaxSpeed = 10f;
     [SerializeField]
     private int _MaxJumps = 1;
+    [SerializeField]
+    private float _JumpCD = 0.0f;
+    private bool _CanJump = true;
     //Groud Checking
     [Header("Ground Checking")]
     [SerializeField]
@@ -19,7 +22,7 @@ public class InputController : MonoBehaviour
     private LayerMask _Ground= 0;
     private int JumpsLeft = 0;
     private Transform GroundChecker;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     //Extra class properties
     private Rigidbody rb;
 
@@ -53,10 +56,22 @@ public class InputController : MonoBehaviour
         }
         //Debug.Log(JumpsLeft);
 
+        if(!_CanJump && _JumpCD <= .10f)
+        {
+            _JumpCD += Time.deltaTime;
+            if(_JumpCD >= .10f)
+            {
+                _CanJump = true;
+                _JumpCD = 0;
+            }
+        }
+
     }
 
     private void Jump()
     {
+        Debug.Log("Jump");
+        
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * _JumpHeight, ForceMode.Impulse);
@@ -66,6 +81,7 @@ public class InputController : MonoBehaviour
             rb.AddForce(transform.right * 10f, ForceMode.Impulse);
         }
         JumpsLeft--;
+        _CanJump = false;
     }
 
 
@@ -73,7 +89,7 @@ public class InputController : MonoBehaviour
     private void FixedUpdate()
     {
         //Jumping
-        if (Input.GetButtonDown("Jump") && JumpsLeft != 0)
+        if (Input.GetButton("Jump") && _CanJump && JumpsLeft != 0 )
         {
             Jump();
         }
