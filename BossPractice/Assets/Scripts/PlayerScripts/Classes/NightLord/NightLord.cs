@@ -12,6 +12,7 @@ public class NightLord : Player
     private Quaternion SpawnRot;
     private Vector3 ForwardVec;
 
+    private Vector3 InitLoc;
     private bool _SPActive = true;
     private bool _QSReady = true;
 
@@ -21,7 +22,7 @@ public class NightLord : Player
         InputController myInput = GetComponent<InputController>();
         myInput.SetMaxJumps(3);
         myInput.SetAccel(6.0f);
-
+        InitLoc = transform.position;
         //Setting Stats
         Level = 220;
 
@@ -37,7 +38,7 @@ public class NightLord : Player
 
         SF = 261;
         AF = 290;
-        Health = 22000f;
+        Health = 32000f;
         Multiplier = 1.75f;
         DamagePercent = .29f;
         FinalDamagePercent = .25f;
@@ -67,7 +68,9 @@ public class NightLord : Player
          if (Health <= 0.1f)
         {
             Debug.LogWarning("You're dead D:");
-            Destroy(gameObject);
+            Experiance = 0;
+            Health = 32000f;
+            transform.position = InitLoc;
         }
 
     }

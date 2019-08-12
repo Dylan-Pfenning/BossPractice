@@ -47,8 +47,9 @@ public class Enemy : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
-            Attacker.Experiance += (CurrentHealth + Defence) * 1.25f;
+            Attacker.Experiance += 1;
             Die();
+            Destroy(this.gameObject);
         }
     }
 
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour
         Vector3 SpawnPos = Vector3.zero;
         SpawnPos.y = -2.3f;
         Instantiate(AnotherEnemyToSpawn, SpawnPos, transform.rotation);
-        Destroy(this.gameObject);
+        
     }
 
 
