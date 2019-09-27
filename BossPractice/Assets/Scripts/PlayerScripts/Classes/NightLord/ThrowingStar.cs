@@ -21,7 +21,7 @@ public class ThrowingStar : MonoBehaviour
     private void Update()
     {
         //Rotate the star to look cool
-        transform.Rotate (0,0,250*Time.deltaTime);
+        transform.Rotate(0, 0, 250 * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -40,10 +40,16 @@ public class ThrowingStar : MonoBehaviour
             Enemy hitEnemy = other.gameObject.GetComponent<Enemy>();
             //Check owners stats for damage formula same with enemy
             //Do final damage calculations
-            float finalDamage = 710f/100;
-            finalDamage *= Random.Range(Owner.LowerRange, Owner.UpperRange); 
+            float finalDamage = 710f / 100;
+            finalDamage *= Random.Range(Owner.LowerRange, Owner.UpperRange);
             finalDamage -= hitEnemy.Defence - (hitEnemy.Defence * Owner.IED);
-            hitEnemy.TakeDmg(Owner,finalDamage);
+            //Spawn damage value textbox
+            TextMesh textbox = Instantiate(Owner.DamageText, Owner.DamagePos, other.transform.rotation);
+            textbox.transform.SetParent(other.transform, false);
+            textbox.text = finalDamage.ToString();
+            Owner.DamagePos = new Vector3(-1.32f, Owner.DamagePos.y + .5f, 0f);
+            Destroy(textbox.gameObject, 1.5f);
+            hitEnemy.TakeDmg(Owner, finalDamage);
         }
 
         Destroy(gameObject, 0);

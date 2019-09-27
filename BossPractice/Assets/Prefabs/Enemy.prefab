@@ -193,6 +193,8 @@ MonoBehaviour:
   _MaxHealth: 0
   _Defence: 0
   _Damage: 0
+  DamageText: {fileID: 8192585988494672839, guid: 873b079eba9304540bb694c53846a031,
+    type: 3}
   points:
   - {fileID: 0}
   - {fileID: 0}

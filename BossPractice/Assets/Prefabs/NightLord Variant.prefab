@@ -22,9 +22,19 @@ MonoBehaviour:
   _ArcaneForce: 0
   _Health: 0
   _Experiance: 0
+  _IgnoreDefence: 0
+  _Damage: 0
+  _FinalDamage: 0
   _PerAtt: 0
+  _TotalAtt: 0
+  _UpperRange: 0
+  _LowerRange: 0
+  _WeaponMultiplier: 0
   _Star: {fileID: 2674790695123639568, guid: d33beb5d1c9d94a6b8c65335088d4ade, type: 3}
   _StarSpeed: 10
+  DamageText: {fileID: 8192585988494672839, guid: 873b079eba9304540bb694c53846a031,
+    type: 3}
+  _DamagePos: {x: -1.32, y: 2.3, z: 0}
 --- !u!1001 &6859476725803128356
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -78,7 +78,8 @@ public class InputController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(transform.right * 10f, ForceMode.Impulse);
+            rb.velocity = Vector3.zero;
+            rb.AddForce(transform.right * 25f, ForceMode.Impulse);
         }
         JumpsLeft--;
         _CanJump = false;
@@ -89,7 +90,7 @@ public class InputController : MonoBehaviour
     private void FixedUpdate()
     {
         //Jumping
-        if (Input.GetButton("Jump") && _CanJump && JumpsLeft != 0 )
+        if (Input.GetButtonDown("Jump") && _CanJump && JumpsLeft != 0 )
         {
             Jump();
         }

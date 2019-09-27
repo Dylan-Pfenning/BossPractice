@@ -7,7 +7,15 @@ public class NightLord : Player
     private GameObject _Star = null;
     [SerializeField]
     private float _StarSpeed = 100f;
-
+    [SerializeField]
+    public TextMesh DamageText = null;
+    [SerializeField]
+    private Vector3 _DamagePos = new Vector3(-1.32f, 2.30f, 0);
+    public Vector3 DamagePos
+    {
+        get { return _DamagePos; }
+        set { _DamagePos = value; }
+    }
     private Vector3 SpawnLoc;
     private Quaternion SpawnRot;
     private Vector3 ForwardVec;
@@ -64,19 +72,25 @@ public class NightLord : Player
             ForwardVec = transform.right;
             StartCoroutine("QuadThrow");
         }
-
-         if (Health <= 0.1f)
+        //Dead player
+        if (Health <= 0.1f)
         {
             Debug.LogWarning("You're dead D:");
             Experiance = 0;
             Health = 32000f;
             transform.position = InitLoc;
         }
+        //Resetting where damage apears on the screen.
+        if (DamagePos.y >= 10.0f)
+        {
+            _DamagePos.y = 2.30f;
+        }
 
     }
     private void EndSkill(string name)
     {
         StopCoroutine(name);
+        _DamagePos.y = 2.30f;
     }
     #region QuadThrow
 

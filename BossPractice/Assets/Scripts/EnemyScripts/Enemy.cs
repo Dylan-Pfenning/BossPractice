@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     //Base class for enemies. Including HP/Damage
     [SerializeField]
     GameObject AnotherEnemyToSpawn = null;
+
     [SerializeField]
     private float _CurrentHealth;
     public float CurrentHealth
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
         set { _Damage = value; }
     }
 
+
     private void Start()
     {
         tag = "Enemy";
@@ -44,7 +46,6 @@ public class Enemy : MonoBehaviour
     public void TakeDmg(Player Attacker, float FinalDamage)
     {
         CurrentHealth -= FinalDamage;
-
         if (CurrentHealth <= 0)
         {
             Attacker.Experiance += 1;
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
         Vector3 SpawnPos = Vector3.zero;
         SpawnPos.y = -2.3f;
         Instantiate(AnotherEnemyToSpawn, SpawnPos, transform.rotation);
-        
+
     }
 
 
